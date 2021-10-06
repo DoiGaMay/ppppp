@@ -4,7 +4,7 @@ local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/DoiGaMay/ppppp/main/"..scripturl, true)
 	end
 end
 local getasset = getsynasset or getcustomasset
@@ -17,7 +17,7 @@ local requestfunc = syn and syn.request or http and http.request or http_request
 
 local function checkpublicrepo(id)
 	local req = requestfunc({
-		Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/"..id..".vape",
+		Url = "https://raw.githubusercontent.com/DoiGaMay/ppppp/CustomModules/"..id..".vape",
 		Method = "GET"
 	})
 	if req.StatusCode == 200 then
@@ -28,7 +28,7 @@ end
 
 local function checkassetversion()
 	local req = requestfunc({
-		Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/assetsversion.dat",
+		Url = "https://raw.githubusercontent.com/DoiGaMay/ppppp/main/assetsversion.dat",
 		Method = "GET"
 	})
 	if req.StatusCode == 200 then
@@ -96,7 +96,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/DoiGaMay/ppppp/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -488,15 +488,15 @@ onething.Visible = true onetext.Position = UDim2.new(0, 0, 0, 35)
 local sortingmethod = "Alphabetical"
 local textwithoutthing = ""
 local function getSpaces(str)
-		local strSize = game:GetService("TextService"):GetTextSize(str, 20, Enum.Font.SourceSans, Vector2.new(10000, 10000))
-		return math.ceil(strSize.X / 3)
+	local strSize = game:GetService("TextService"):GetTextSize(str, 20, Enum.Font.SourceSans, Vector2.new(10000, 10000))
+	return math.ceil(strSize.X / 3)
 end
 local function UpdateHud()
 	local text = ""
 	local text2 = ""
 	local tableofmodules = {}
 	local first = true
-	
+
 	for i,v in pairs(GuiLibrary["ObjectsThatCanBeSaved"]) do
 		if v["Type"] == "OptionsButton" and v["Api"]["Name"] ~= "Text GUI" then
 			if v["Api"]["Enabled"] then
@@ -856,7 +856,7 @@ GuiLibrary["UpdateUI"] = function()
 				end
 			end
 			if (v["Type"] == "Toggle" or v["Type"] == "ToggleMain") and v["Api"]["Enabled"] then
-					v["Object"].ToggleFrame1.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
+				v["Object"].ToggleFrame1.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
 			end
 			if v["Type"] == "Slider" then
 				v["Object"].Slider.FillSlider.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
@@ -870,14 +870,14 @@ GuiLibrary["UpdateUI"] = function()
 		end
 		ProfilesTextList["Object"].AddBoxBKG.AddButton.ImageColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
 		for i3, v3 in pairs(ProfilesTextList["ScrollingObject"].ScrollingFrame:GetChildren()) do
-		--	pcall(function()
-				if v3:IsA("TextButton") and v3.ItemText.Text == GuiLibrary["CurrentProfile"] then
-					v3.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
-					v3.ImageButton.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
-					v3.ItemText.TextColor3 = Color3.new(1, 1, 1)
-					v3.ItemText.TextStrokeTransparency = 0.75
-				end
-		--	end)
+			--	pcall(function()
+			if v3:IsA("TextButton") and v3.ItemText.Text == GuiLibrary["CurrentProfile"] then
+				v3.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
+				v3.ImageButton.BackgroundColor3 = Color3.fromHSV(GuiLibrary["Settings"]["GUIObject"]["Color"], 0.7, 0.9)
+				v3.ItemText.TextColor3 = Color3.new(1, 1, 1)
+				v3.ItemText.TextStrokeTransparency = 0.75
+			end
+			--	end)
 		end
 	end)
 end
@@ -947,10 +947,10 @@ ToggleNotifications["Object"].Visible = Notifications["Enabled"]
 local GUIbind = GUI.CreateGUIBind()
 
 local teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
+	if State == Enum.TeleportState.Started then
 		GuiLibrary["SaveSettings"]()
-        queueteleport('shared.VapeSwitchServers = true wait(1) if shared.VapeDeveloper then loadstring(readfile("vape/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))() end')
-    end
+		queueteleport('shared.VapeSwitchServers = true wait(1) if shared.VapeDeveloper then loadstring(readfile("vape/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/DoiGaMay/ppppp/main/NewMainScript.lua", true))() end')
+	end
 end)
 
 GuiLibrary["SelfDestruct"] = function()
@@ -1043,16 +1043,8 @@ GUI.CreateButton2({
 })
 
 loadstring(GetURL("AnyGame.vape"))()
-if pcall(function() readfile("vape/CustomModules/"..game.PlaceId..".vape") end) then
-	loadstring(readfile("vape/CustomModules/"..game.PlaceId..".vape"))()
-else
-	local publicrepo = checkpublicrepo(game.PlaceId)
-	if publicrepo then
-		loadstring(publicrepo)()
-	end
-end
-
 GuiLibrary["LoadSettings"]()
+
 if #ProfilesTextList["ObjectList"] == 0 then
 	table.insert(ProfilesTextList["ObjectList"], "default")
 	ProfilesTextList["RefreshValues"](ProfilesTextList["ObjectList"])
