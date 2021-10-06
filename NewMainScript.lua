@@ -1043,6 +1043,15 @@ GUI.CreateButton2({
 })
 
 loadstring(GetURL("AnyGame.vape"))()
+if pcall(function() readfile("vape/CustomModules/"..game.PlaceId..".vape") end) then
+	loadstring(readfile("vape/CustomModules/"..game.PlaceId..".vape"))()
+else
+	local publicrepo = checkpublicrepo(game.PlaceId)
+	if publicrepo then
+		loadstring(publicrepo)()
+	end
+end
+
 GuiLibrary["LoadSettings"]()
 
 if #ProfilesTextList["ObjectList"] == 0 then
