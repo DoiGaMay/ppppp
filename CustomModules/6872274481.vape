@@ -1051,6 +1051,47 @@ local Reach = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateO
 GuiLibrary["RemoveObject"]("MouseTPOptionsButton")
 GuiLibrary["RemoveObject"]("PhaseOptionsButton")
 
+
+	local DodoColor = {["Value"] = 0.44}
+	local DodoColorTransparency = {["Value"] = 1}
+	local DodoFinder = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "DodoFinder", 
+		["Function"] = function(callback) 
+			if callback then
+				BindToRenderStep("DodoFinders", 500, function()
+
+					for i , v in pairs(workspace:GetChildren()) do
+						if v.Name == "DodoBird" and not v:FindFirstChild("BEAMMMMM") then
+
+							local yeah = Instance.new("Attachment",v.PrimaryPart)
+							local yeah2 = Instance.new("Attachment",game.Players.LocalPlayer.Character.PrimaryPart)
+							local yeah3 = Instance.new("Beam",v) yeah3.Name = "BEAMMMMM"
+
+							yeah3.Attachment0 = yeah2
+							yeah3.Attachment1 = yeah
+
+						end
+					end
+
+				end)
+			else
+				UnbindFromRenderStep("DodoFinder") 
+			end
+		end
+	})
+	DodoColor = DodoFinder.CreateColorSlider({
+		["Name"] = "Track Color", 
+		["Function"] = function(val) end
+	})
+	DodoColorTransparency = DodoFinder.CreateSlider({
+		["Name"] = "Transparency", 
+		["Min"] = 1,
+		["Max"] = 100, 
+		["Function"] = function(val) end,
+		["Default"] = 0
+	})
+
+
 local oldpos = Vector3.new(0, 0, 0)
 local oldpos2 = Vector3.new(0, 0, 0)
 local Spider = {["Enabled"] = false}
