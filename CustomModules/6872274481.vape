@@ -2006,7 +2006,7 @@ spawn(function()
 	killaurabox.AlwaysOnTop = true
 	killaurabox.ZIndex = 11
 	killaurabox.Parent = GuiLibrary["MainGui"]
-	local killauratargetframe = {["Players"] = {["Enabled"] = false}}
+	local killauratargetframe = {["Players"] = {["Enabled"] = true}}
 	local killaurarealremote = bedwars["ClientHandler"]:Get(bedwars["AttackRemote"])["instance"]
 	local killauramethod = {["Value"] = "Normal"}
 	local killauraanimmethod = {["Value"] = "Normal"}
@@ -2119,7 +2119,6 @@ spawn(function()
 							killauradelay = tick() + (1 / killauraaps["GetRandomValue"]())
 						end
 						for i,plr in pairs(plrs) do
-							print(getEquipped()["Type"])
 							if getEquipped()["Type"] == "sword" and isAlive() then
 								if isAlive() and (killauratargetframe["NPCs"]["Enabled"] == false or killauratargetframe["NPCs"]["Enabled"]) and (killaurahandcheck["Enabled"] and getEquipped()["Type"] == "sword" or (not killaurahandcheck["Enabled"])) and (killauratargetframe["Walls"]["Enabled"] and bedwars["SwordController"]:canSee({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}) or (not killauratargetframe["Walls"]["Enabled"])) and (killauramouse["Enabled"] and uis:IsMouseButtonPressed(0) or (not killauramouse["Enabled"])) and (killauragui["Enabled"] and (bedwars["ClientStoreHandler"]:getState().App.shownApp <= 0 and GuiLibrary["MainGui"].ClickGui.Visible == false) or (not killauragui["Enabled"])) then
 									if plr.Character.PrimaryPart and lplr.Character.PrimaryPart then
