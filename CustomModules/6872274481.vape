@@ -683,7 +683,7 @@ local function getEquipped()
 	local type = ""
 	local obj = (isAlive() and lplr.Character:FindFirstChild("HandInvItem") and lplr.Character.HandInvItem.Value or nil)
 	if obj then
-		if string.sub(obj.Name,#obj.Name - 5,#obj.Name) == "_sword" or string.sub(obj.Name,#obj.Name - 5,#obj.Name) == "_blade" then 
+		if string.sub(obj.Name,#obj.Name - 5,#obj.Name) == "_sword" or string.sub(obj.Name,#obj.Name - 5,#obj.Name) == "eblade" then 
 			type = "sword"
 		end
 		if obj.Name:find("wool") or bedwars["ItemTable"][obj.Name]["block"] then
