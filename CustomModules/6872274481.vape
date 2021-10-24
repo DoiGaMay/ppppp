@@ -2550,7 +2550,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and victorysaid == true  then
 		local msg = plr.DisplayName .. ", +10 Social Credit for you"
-
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 	end
 	
 end)
