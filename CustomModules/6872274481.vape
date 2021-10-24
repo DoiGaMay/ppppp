@@ -2556,6 +2556,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		GuiLibrary["SocialCreditStorage"][plr.UserId] -= 10
 
 		local msg = "-10 Social Credit for ".. plr.DisplayName .. " (" .. GuiLibrary["SocialCreditStorage"][plr.UserId] .. " Social Credit left)"
+		print(msg)
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 
 	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and  (victorysaid == true or leavesaid == true)   then
@@ -2567,6 +2568,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		GuiLibrary["SocialCreditStorage"][plr.UserId] += 10
 
 		local msg = "+10 Social Credit for ".. plr.DisplayName .. " (" .. GuiLibrary["SocialCreditStorage"][plr.UserId] .. " Social Credit left)"
+		print(msg)
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 
 	end
