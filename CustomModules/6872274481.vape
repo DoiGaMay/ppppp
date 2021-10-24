@@ -2547,10 +2547,32 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 	end
 	
 	if (tab["Message"]:lower():find("ez") or tab["Message"]:lower():find("easy") or tab["Message"]:lower():find("tash"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and (victorysaid == true or leavesaid == true)  then
-		local msg = plr.DisplayName .. ", -10 Social Credit for you"
+		
+		if not GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"] then
+			GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"] = {}
+		end
+		
+		if not GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] then
+			GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] = 100
+		end
+		
+		GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] -= 10
+
+		local msg = plr.DisplayName .. ", -10 Social Credit for you (" .. GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] .. " Social Credit left)"
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+		
 	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and  (victorysaid == true or leavesaid == true)   then
-		local msg = plr.DisplayName .. ", +10 Social Credit for you"
+		if not GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"] then
+			GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"] = {}
+		end
+
+		if not GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] then
+			GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] = 100
+		end
+
+		GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] += 10
+
+		local msg = plr.DisplayName .. ", +10 Social Credit for you (" .. GuiLibrary["ObjectsThatCanBeSaved"]["SocialCreditStorage"]["Table"][plr.UserId] .. " Social Credit left)"
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 
 	end
