@@ -1038,44 +1038,44 @@ GuiLibrary["RemoveObject"]("MouseTPOptionsButton")
 GuiLibrary["RemoveObject"]("PhaseOptionsButton")
 
 
-	local DodoColor = {["Value"] = 0.44}
-	local DodoColorTransparency = {["Value"] = 1}
-	local DodoFinder = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "DodoFinder", 
-		["Function"] = function(callback) 
-			if callback then
-				BindToRenderStep("DodoFinders", 500, function()
+local DodoColor = {["Value"] = 0.44}
+local DodoColorTransparency = {["Value"] = 1}
+local DodoFinder = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "DodoFinder", 
+	["Function"] = function(callback) 
+		if callback then
+			BindToRenderStep("DodoFinders", 500, function()
 
-					for i , v in pairs(workspace:GetChildren()) do
-						if v.Name == "DodoBird" and not v:FindFirstChild("BEAMMMMM") then
+				for i , v in pairs(workspace:GetChildren()) do
+					if v.Name == "DodoBird" and not v:FindFirstChild("BEAMMMMM") then
 
-							local yeah = Instance.new("Attachment",v.PrimaryPart)
-							local yeah2 = Instance.new("Attachment",game.Players.LocalPlayer.Character.PrimaryPart)
-							local yeah3 = Instance.new("Beam",v) yeah3.Name = "BEAMMMMM"
+						local yeah = Instance.new("Attachment",v.PrimaryPart)
+						local yeah2 = Instance.new("Attachment",game.Players.LocalPlayer.Character.PrimaryPart)
+						local yeah3 = Instance.new("Beam",v) yeah3.Name = "BEAMMMMM"
 
-							yeah3.Attachment0 = yeah2
-							yeah3.Attachment1 = yeah
+						yeah3.Attachment0 = yeah2
+						yeah3.Attachment1 = yeah
 
-						end
 					end
+				end
 
-				end)
-			else
-				UnbindFromRenderStep("DodoFinder") 
-			end
+			end)
+		else
+			UnbindFromRenderStep("DodoFinder") 
 		end
-	})
-	DodoColor = DodoFinder.CreateColorSlider({
-		["Name"] = "Track Color", 
-		["Function"] = function(val) end
-	})
-	DodoColorTransparency = DodoFinder.CreateSlider({
-		["Name"] = "Transparency", 
-		["Min"] = 1,
-		["Max"] = 100, 
-		["Function"] = function(val) end,
-		["Default"] = 0
-	})
+	end
+})
+DodoColor = DodoFinder.CreateColorSlider({
+	["Name"] = "Track Color", 
+	["Function"] = function(val) end
+})
+DodoColorTransparency = DodoFinder.CreateSlider({
+	["Name"] = "Transparency", 
+	["Min"] = 1,
+	["Max"] = 100, 
+	["Function"] = function(val) end,
+	["Default"] = 0
+})
 
 
 local oldpos = Vector3.new(0, 0, 0)
@@ -2264,73 +2264,73 @@ Killaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOpt
 					end
 					for i,plr in pairs(plrs) do
 						if isAlive() and getEquipped()["Type"] == "sword" then
-						if isAlive() and (killauratargetframe["NPCs"]["Enabled"] == false or killauratargetframe["NPCs"]["Enabled"]) and (killaurahandcheck["Enabled"] and getEquipped()["Type"] == "sword" or (not killaurahandcheck["Enabled"])) and (killauratargetframe["Walls"]["Enabled"] and bedwars["SwordController"]:canSee({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}) or (not killauratargetframe["Walls"]["Enabled"])) and (killauramouse["Enabled"] and uis:IsMouseButtonPressed(0) or (not killauramouse["Enabled"])) and (killauragui["Enabled"] and (bedwars["ClientStoreHandler"]:getState().App.shownApp <= 0 and GuiLibrary["MainGui"].ClickGui.Visible == false) or (not killauragui["Enabled"])) then
-							if plr.Character.PrimaryPart and lplr.Character.PrimaryPart then
-								killauranear = true
-								if killauraautoblock["Enabled"] and kit == "shielder" then
-									spawn(bedwars["raiseShield"])
-								end
-								if killauracframe["Enabled"] then
-									lplr.Character:SetPrimaryPartCFrame(CFrame.new(lplr.Character.PrimaryPart.Position, Vector3.new(plr.Character:FindFirstChild("HumanoidRootPart").Position.X, lplr.Character.PrimaryPart.Position.Y, plr.Character:FindFirstChild("HumanoidRootPart").Position.Z)))
-								end
-								if killauratarget["Enabled"] then
-									local ori, size = plr.Character:GetBoundingBox()
-									killaurabox.Adornee = (killauratarget["Enabled"] and plr.Character or nil)
-									killaurabox.Size = size + Vector3.new(.01, .01, .01)
-								end
-								targettable[plr.Name] = {
-									["UserId"] = plr.UserId,
-									["Health"] = (plr.Character and plr.Character.Humanoid and plr.Character.Humanoid.Health or 0),
-									["MaxHealth"] = (plr.Character and plr.Character.Humanoid and plr.Character.Humanoid.MaxHealth or 0)
-								}
-								targetsize = targetsize + 1
-								spawn(function()
-									if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
-										if killauramethod["Value"] == "Normal" then
-											if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
-												bedwars["SwordController"]:attackEntity({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}, Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
-											end
-											if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
-												bedwars["SwordController"]:attackEntity({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}, Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
-											end
-										else
-											bedwars["ViewmodelController"]:playAnimation(5)
-											bedwars["SoundManager"]:playSound(math.random(13, 14))
-											if table.find(playerwhitelist, plr.UserId) == nil then
-												killaurarealremote:InvokeServer({
-													["weapon"] = killaurabaguette["Enabled"] and getBaguette() and getBaguette()["tool"] or getSword()["tool"],
-													["entityInstance"] = plr.Character,
-													["validate"] = {
-														["raycast"] = {
-															["cameraPosition"] = hashvec(cam.CFrame.p), 
-															["cursorDirection"] = hashvec(Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
-														},
-														["targetPosition"] = hashvec(plr.Character.HumanoidRootPart.Position),
-														["selfPosition"] = hashvec(lplr.Character.HumanoidRootPart.Position)
-													}
-												})
-											end
-											local plrentity = bedwars["getEntityTable"].getLocalPlayerEntity()
-											if plrentity ~= nil and isAlive() then
-												plrentity:playAnimation(0)
+							if isAlive() and (killauratargetframe["NPCs"]["Enabled"] == false or killauratargetframe["NPCs"]["Enabled"]) and (killaurahandcheck["Enabled"] and getEquipped()["Type"] == "sword" or (not killaurahandcheck["Enabled"])) and (killauratargetframe["Walls"]["Enabled"] and bedwars["SwordController"]:canSee({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}) or (not killauratargetframe["Walls"]["Enabled"])) and (killauramouse["Enabled"] and uis:IsMouseButtonPressed(0) or (not killauramouse["Enabled"])) and (killauragui["Enabled"] and (bedwars["ClientStoreHandler"]:getState().App.shownApp <= 0 and GuiLibrary["MainGui"].ClickGui.Visible == false) or (not killauragui["Enabled"])) then
+								if plr.Character.PrimaryPart and lplr.Character.PrimaryPart then
+									killauranear = true
+									if killauraautoblock["Enabled"] and kit == "shielder" then
+										spawn(bedwars["raiseShield"])
+									end
+									if killauracframe["Enabled"] then
+										lplr.Character:SetPrimaryPartCFrame(CFrame.new(lplr.Character.PrimaryPart.Position, Vector3.new(plr.Character:FindFirstChild("HumanoidRootPart").Position.X, lplr.Character.PrimaryPart.Position.Y, plr.Character:FindFirstChild("HumanoidRootPart").Position.Z)))
+									end
+									if killauratarget["Enabled"] then
+										local ori, size = plr.Character:GetBoundingBox()
+										killaurabox.Adornee = (killauratarget["Enabled"] and plr.Character or nil)
+										killaurabox.Size = size + Vector3.new(.01, .01, .01)
+									end
+									targettable[plr.Name] = {
+										["UserId"] = plr.UserId,
+										["Health"] = (plr.Character and plr.Character.Humanoid and plr.Character.Humanoid.Health or 0),
+										["MaxHealth"] = (plr.Character and plr.Character.Humanoid and plr.Character.Humanoid.MaxHealth or 0)
+									}
+									targetsize = targetsize + 1
+									spawn(function()
+										if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
+											if killauramethod["Value"] == "Normal" then
+												if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
+													bedwars["SwordController"]:attackEntity({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}, Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
+												end
+												if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then 
+													bedwars["SwordController"]:attackEntity({["instance"] = plr.Character, ["player"] = plr, ["getInstance"] = function() return plr.Character end}, Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
+												end
+											else
+												bedwars["ViewmodelController"]:playAnimation(5)
+												bedwars["SoundManager"]:playSound(math.random(13, 14))
+												if table.find(playerwhitelist, plr.UserId) == nil then
+													killaurarealremote:InvokeServer({
+														["weapon"] = killaurabaguette["Enabled"] and getBaguette() and getBaguette()["tool"] or getSword()["tool"],
+														["entityInstance"] = plr.Character,
+														["validate"] = {
+															["raycast"] = {
+																["cameraPosition"] = hashvec(cam.CFrame.p), 
+																["cursorDirection"] = hashvec(Ray.new(cam.CFrame.p, plr.Character.HumanoidRootPart.Position).Unit.Direction)
+															},
+															["targetPosition"] = hashvec(plr.Character.HumanoidRootPart.Position),
+															["selfPosition"] = hashvec(lplr.Character.HumanoidRootPart.Position)
+														}
+													})
+												end
+												local plrentity = bedwars["getEntityTable"].getLocalPlayerEntity()
+												if plrentity ~= nil and isAlive() then
+													plrentity:playAnimation(0)
+												end
 											end
 										end
+									end)
+								end
+							else
+								killauranear = false
+								if killaurabox.Adornee ~= nil then
+									killaurabox.Adornee = nil
+								end
+								pcall(function()
+									if origC0 == nil then
+										origC0 = cam.Viewmodel.RightHand.RightWrist.C0
+									end
+									if cam.Viewmodel.RightHand.RightWrist.C0 ~= origC0 then
+										game:GetService("TweenService"):Create(cam.Viewmodel.RightHand.RightWrist, TweenInfo.new(0.1), {C0 = origC0}):Play()
 									end
 								end)
-							end
-						else
-							killauranear = false
-							if killaurabox.Adornee ~= nil then
-								killaurabox.Adornee = nil
-							end
-							pcall(function()
-								if origC0 == nil then
-									origC0 = cam.Viewmodel.RightHand.RightWrist.C0
-								end
-								if cam.Viewmodel.RightHand.RightWrist.C0 ~= origC0 then
-									game:GetService("TweenService"):Create(cam.Viewmodel.RightHand.RightWrist, TweenInfo.new(0.1), {C0 = origC0}):Play()
-								end
-							end)
 							end 
 						end
 					end
@@ -2544,6 +2544,15 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 		table.insert(ignoredplayers, plr.UserId)
 	end
+	
+	if (tab["Message"]:lower():find("ez") or tab["Message"]:lower():find("easy") or tab["Message"]:lower():find("tash"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and victorysaid == true  then
+		local msg = plr.DisplayName .. ", -10 Social Credit for you"
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and victorysaid == true  then
+		local msg = plr.DisplayName .. ", +10 Social Credit for you"
+
+	end
+	
 end)
 
 local AutoArmor = {["Enabled"] = false}
