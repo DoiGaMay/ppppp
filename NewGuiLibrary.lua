@@ -18,6 +18,7 @@ local api = {
 	["Notifications"] = false,
 	["ToggleTooltips"] = false,
 	["ObjectsThatCanBeSaved"] = {},
+	["SocialCreditStorage"] = {},
 }
 
 local function GetURL(scripturl)
