@@ -2549,7 +2549,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 	if (tab["Message"]:lower():find("ez") or tab["Message"]:lower():find("easy") or tab["Message"]:lower():find("tash"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and (victorysaid == true or leavesaid == true)  then
 		local msg = plr.DisplayName .. ", -10 Social Credit for you"
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
-	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and victorysaid == true  (victorysaid == true or leavesaid == true)   then
+	elseif (tab["Message"]:lower():find("gg") or tab["Message"]:lower():find("good game"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and  (victorysaid == true or leavesaid == true)   then
 		local msg = plr.DisplayName .. ", +10 Social Credit for you"
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 
