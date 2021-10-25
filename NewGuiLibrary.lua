@@ -349,6 +349,11 @@ api["LoadSettings"] = function()
 	end)
 	if success and type(result) == "table" then
 		for i,v in pairs(result) do
+			
+			for _,wjdans in pairs(v) do
+				print(i,wjdans)
+			end
+			
 			if v["Type"] == "Custom" and api["findObjectInTable"](api["Settings"], i) then
 				api["Settings"][i] = v
 			end
