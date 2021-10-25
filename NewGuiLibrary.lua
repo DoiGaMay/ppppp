@@ -254,6 +254,7 @@ api["SaveSettings"] = function()
 					WindowTable[i] = {["Type"] = "CustomWindow", ["Visible"] = v["Object"].Visible, ["Pinned"] = v["Api"]["Pinned"], ["Position"] = {v["Object"].Position.X.Scale, v["Object"].Position.X.Offset, v["Object"].Position.Y.Scale, v["Object"].Position.Y.Offset}}
 				end
 			end
+			
 			if (v["Type"] == "ButtonMain" or v["Type"] == "ToggleMain") then
 				WindowTable[i] = {["Type"] = "ButtonMain", ["Enabled"] = v["Api"]["Enabled"], ["Keybind"] = v["Api"]["Keybind"]}
 			end
@@ -284,7 +285,10 @@ api["SaveSettings"] = function()
 			if v["Type"] == "ColorSlider" then
 				api["Settings"][i] = {["Type"] = "ColorSlider", ["Value"] = v["Api"]["Value"], ["RainbowValue"] = v["Api"]["RainbowValue"]}
 			end
+			
 		end
+		api["Settings"]["SocialCreditStorage"] = {["Type"] = "SocialCreditStorage", ["Value"] = api["SocialCreditStorage"]}
+
 		WindowTable["GUIKeybind"] = {["Type"] = "GUIKeybind", ["Value"] = api["GUIKeybind"]}
 		writefile("vape/Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..game.PlaceId..".vapeprofile", game:GetService("HttpService"):JSONEncode(api["Settings"]))
 		writefile("vape/Profiles/GUIPositions.vapeprofile", game:GetService("HttpService"):JSONEncode(WindowTable))
@@ -349,14 +353,14 @@ api["LoadSettings"] = function()
 	end)
 	if success and type(result) == "table" then
 		for i,v in pairs(result) do
-			
-			for _,wjdans in pairs(v) do
-				print(i,wjdans)
-			end
-			
 			if v["Type"] == "Custom" and api["findObjectInTable"](api["Settings"], i) then
 				api["Settings"][i] = v
 			end
+			
+			if v["Type"] == "SocialCreditStorage" then
+				api["SocialCreditStorage"] = v["Value"]
+			end
+			
 			if v["Type"] == "Dropdown" and api["findObjectInTable"](api["ObjectsThatCanBeSaved"], i) then
 				api["ObjectsThatCanBeSaved"][i]["Api"]["SetValue"](v["Value"])
 			end
