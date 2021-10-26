@@ -2546,6 +2546,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		table.insert(ignoredplayers, plr.UserId)
 	end
 
+--[[
 	if (tab["Message"]:lower():find("ez") or tab["Message"]:lower():find("easy") or tab["Message"]:lower():find("tash"))  and plr ~= lplr  and table.find(ignoredplayers, plr.UserId) == nil and (victorysaid == true or leavesaid == true)  then
 
 
@@ -2571,7 +2572,7 @@ chatconnection = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvent
 		print(msg)
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 
-	end
+	end]]
 
 end)
 
